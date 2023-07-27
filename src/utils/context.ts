@@ -1,0 +1,16 @@
+import { createContext } from "react";
+
+interface Product {
+  id: number;
+  title: string;
+  price: string;
+  category: string;
+  description: string;
+  image: string;
+}
+
+interface MyContextValue {
+  products: Product[] | null;
+}
+
+export const Context = createContext<MyContextValue | undefined>(undefined);

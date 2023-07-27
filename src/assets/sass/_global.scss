@@ -1,0 +1,85 @@
+body {
+  font-weight: 300;
+  font-family: $primary-font;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  overflow-x: hidden;
+}
+
+// Container Style
+.container {
+  max-width: 100%;
+  margin: 0px -15px;
+  max-width: 1002px;
+  margin: 0 auto;
+}
+
+// Common section padding
+.section-padding {
+  padding: 100px 0px;
+}
+
+// Secondary Background Color
+.secondary-bg {
+  background: $secondary;
+}
+
+// Shop Background
+.bg-white {
+  background: $white;
+}
+
+// White color
+.white {
+  color: $white;
+}
+
+// Black color
+.black {
+  color: $black;
+}
+
+// Gray color
+.gray {
+  color: $gray;
+}
+
+// Invalid feedback
+.invalid-feedback {
+  color: #dc3545;
+}
+
+.no-found {
+  color: $secondary;
+  font-size: 14px;
+}
+
+// Reset css
+a {
+  outline: none !important;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+}
+
+.loading_spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba($color: #fff, $alpha: 0.7);
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 33;
+}

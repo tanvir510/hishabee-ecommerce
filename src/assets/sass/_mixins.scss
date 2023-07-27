@@ -1,0 +1,61 @@
+// Laptop screen
+@mixin laptop() {
+    @media only screen and (max-width: 1399px) {
+        @content;
+    }
+}
+
+@mixin laptop-only() {
+    @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+        @content;
+    }
+}
+
+// Small screens, laptops.
+@mixin macbook() {
+    @media only screen and (max-width: 1200px) {
+        @content;
+    }
+}
+
+// Small screens, laptops.
+@mixin tablet() {
+    @media only screen and (max-width: 991px) {
+        @content;
+    }
+}
+
+// iPads, Tablets.
+@mixin ipad() {
+    @media only screen and (max-width: 768px) {
+        @content;
+    }
+}
+
+// Mobile devices.
+@mixin mobile-lg() {
+    @media only screen and (max-width: 640px) {
+        @content;
+    }
+}
+
+// Mobile devices.
+@mixin mobile-md() {
+    @media only screen and (max-width: 480px) {
+        @content;
+    }
+}
+
+// Small Mobile devices.
+@mixin mobile-sm() {
+    @media only screen and (max-width: 400px) {
+        @content;
+    }
+}
+
+// Small Mobile devices.
+@mixin mobile-xs() {
+    @media only screen and (max-width: 350px) {
+        @content;
+    }
+}
