@@ -14,7 +14,7 @@ export const Header = () => {
         className="text-white text-2xl font-bold cursor-pointer"
         onClick={() => router.push("/")}
       >
-        E-Commerce Store
+        Hishabee
       </h1>
       <div
         className="flex items-center relative cursor-pointer"
