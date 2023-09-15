@@ -1,8 +1,25 @@
+"use client";
+
+// File Import
+import { useAppSelector } from "@/redux/store";
+import { useRouter } from "next/navigation";
+
 export const Header = () => {
+  const router = useRouter();
+  const carts = useAppSelector((state) => state.productReducer.value.carts);
+
   return (
     <header className="bg-blue-600 p-4 flex justify-between items-center">
-      <h1 className="text-white text-2xl font-bold">E-Commerce Store</h1>
-      <div className="flex items-center relative">
+      <h1
+        className="text-white text-2xl font-bold cursor-pointer"
+        onClick={() => router.push("/")}
+      >
+        E-Commerce Store
+      </h1>
+      <div
+        className="flex items-center relative cursor-pointer"
+        onClick={() => router.push("/carts")}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           style={{ color: "white", marginRight: "3px" }}
@@ -17,7 +34,7 @@ export const Header = () => {
             fill="white"
           />
         </svg>
-        <span className="text-white">3</span>
+        <span className="text-white">{carts?.length}</span>
         {/* Replace with the actual cart count */}
       </div>
     </header>

@@ -1,36 +1,39 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-// pages/index.tsx
+
+// Library Import
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { Products } from "@/api";
-import { Loading, Header, Footer, ProductItem } from "./component";
-import { getTruncateString } from "@/utils";
+import { useDispatch } from "react-redux";
 
 // File Import
-
-interface Product {
-  id: number;
-  title: string;
-  price: string;
-  category: string;
-  description: string;
-  image: string;
-}
+import { Products } from "@/api";
+import { Loading, ProductItem } from "./component";
+import { ProductType } from "@/types";
+import { addToCart, getProducts } from "@/redux/features/productSlice";
+import { useAppSelector } from "@/redux/store";
 
 const Home: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState<Boolean>(false);
+  const dispatch = useDispatch();
+  const existingProducts = useAppSelector(
+    (state) => state.productReducer.value.products
+  );
 
   useEffect(() => {
     fetchProducts({ limit: 16 });
   }, []);
+
+  useEffect(() => {
+    setProducts(existingProducts);
+  }, [existingProducts]);
 
   const fetchProducts = async (params?: any) => {
     try {
       setLoading(true);
       const response = await Products.getProducts(params);
       if (response.status === 200) {
-        setProducts(response.data);
+        dispatch(getProducts(response.data));
         setLoading(false);
       }
     } catch (error) {
@@ -39,14 +42,8 @@ const Home: React.FC = () => {
     }
   };
 
-  const handleAddToCart = (id: number) => {
-    console.log("HandleAddToCart", id);
-  };
-
   return (
     <div className="page_wrapper">
-      {/* Header Block */}
-      <Header />
       {/* Main Block */}
       <main className="py-10">
         <div className="container relative">
@@ -90,7 +87,7 @@ const Home: React.FC = () => {
                 <ProductItem
                   key={index}
                   product={product}
-                  handleAddToCart={(id: number) => handleAddToCart(id)}
+                  handleAddToCart={(id: number) => dispatch(addToCart(id))}
                 />
               ))}
             </div>
@@ -102,8 +99,6 @@ const Home: React.FC = () => {
           {loading && <Loading />}
         </div>
       </main>
-      {/* Footer Block */}
-      <Footer />
     </div>
   );
 };
